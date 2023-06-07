@@ -1,6 +1,6 @@
 # Ada - Santander Coders: Unit 01
 
-### Grocery Store Project (CRUD)
+### Grocery Store Project - CRUD
 
 - [Statement](#statement)
 - [Concepts](#concepts)
