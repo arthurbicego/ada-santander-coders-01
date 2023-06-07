@@ -34,7 +34,7 @@ public class CustomerController {
                 product.setName(split[1]);
                 product.setQuantity(quantity);
                 product.setPrice(Double.valueOf(split[3]));
-                cart.getProductsCart().add(product);
+                cart.addProduct(product);
                 System.out.println("Product added to shopping cart.");
 
                 split[2] = String.valueOf(Integer.parseInt(split[2]) - quantity);
@@ -74,6 +74,6 @@ public class CustomerController {
             groceryView.showProduct(productLine);
             checkoutValue = checkoutValue + (product.getQuantity() * product.getPrice());
         }
-        System.out.printf("The total checkout amount is: $%.2f", checkoutValue);
+        System.out.printf("\nThe total checkout amount is: $%.2f\n", checkoutValue);
     }
 }
