@@ -1,6 +1,6 @@
 # Ada - Santander Coders: Unit 01
 
-### Grocery Store Project (CRUD)
+### Grocery Store Project - CRUD
 
 - [Statement](#statement)
 - [Concepts](#concepts)
@@ -19,21 +19,4 @@ Note: You will only need to save the product data in a file.
 - An exit option that closes the program if the user chooses to.
 
 # Concepts
-
-<details>
-  <summary>Carregamento do Contexto</summary>
-  <h5>Objetivo</h5>
-  <ul>
-    <li>Checar se contexto da aplicação foi carregado</li>
-  </ul>
-  <h5>Código</h5>
-
-  ```java
-    @Test
-    public void carregouContexto(){
-        Assertions.assertTrue(controller != null);
-    }
-  ```
-</details>
-
-test
+TBD
