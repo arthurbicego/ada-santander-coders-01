@@ -35,7 +35,7 @@ public class CustomerController {
                 product.setQuantity(quantity);
                 product.setPrice(Double.valueOf(split[3]));
                 cart.addProduct(product);
-                System.out.println("Product added to shopping cart.");
+                System.out.println("\nProduct added to shopping cart.\n");
 
                 split[2] = String.valueOf(Integer.parseInt(split[2]) - quantity);
                 String productUpdated = String.join("|", split);
@@ -54,7 +54,7 @@ public class CustomerController {
         }
         System.out.println("Enter the Id of product you want to remove from Shopping Cart.");
         int id = scanner.nextInt();
-        groceryController.verifyIdFound(id);
+        verifyProductCart(id);
         groceryController.verifyAreYouSure(id, "remove");
 
         for (int i = 0; i < products.size(); i++) {
@@ -75,5 +75,17 @@ public class CustomerController {
             checkoutValue = checkoutValue + (product.getQuantity() * product.getPrice());
         }
         System.out.printf("\nThe total checkout amount is: $%.2f\n", checkoutValue);
+    }
+
+    public Object verifyProductCart(int id) throws IOException {
+        List<Product> productsCart = cart.getProductsCart();
+        for (Product product : productsCart) {
+            if (id == product.getId()) {
+                return null;
+            }
+        }
+        System.out.printf("\nProduct Id " + id + "not found in Shopping Cart.\n");
+        groceryView.menuCustomer();
+        return null;
     }
 }

@@ -7,7 +7,7 @@ public class Cart {
     private List<Product> productsCart = new ArrayList<>();
 
     public void addProduct(Product product){
-        productsCart.add(product);
+        this.productsCart.add(product);
     }
 
     public List<Product> getProductsCart() {

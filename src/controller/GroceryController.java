@@ -50,6 +50,7 @@ public class GroceryController {
         System.out.println("1. Yes.");
         System.out.println("2. No! Go back to menu.");
         int choice = scanner.nextInt();
+        System.out.println();
 
         if (choice != 1) {
             groceryView.menuMain();
