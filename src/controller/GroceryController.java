@@ -21,7 +21,7 @@ public class GroceryController {
         products.forEach(product -> groceryView.showProduct(product));
     }
 
-    public String searchProductById(int id) throws IOException {
+    public String searchProductById(String id) throws IOException {
         verifyIdFound(id);
         List<String> products = Files.readAllLines(path);
         for (String productLine : products) {
@@ -45,29 +45,30 @@ public class GroceryController {
         }
     }
 
-    public void verifyAreYouSure(int id, String method) throws IOException {
+    public void verifyAreYouSure(String id, String method) throws IOException {
         System.out.println("Are you sure you want to " + method + " Product " + id + "?");
         System.out.println("1. Yes.");
         System.out.println("2. No! Go back to menu.");
-        int choice = scanner.nextInt();
+        String choice = scanner.nextLine();
         System.out.println();
 
-        if (choice != 1) {
+        if (!Objects.equals(choice, "1")) {
             groceryView.menuMain();
         }
     }
 
-    public void verifyIdFound(int id) throws IOException {
+    public void verifyIdFound(String id) throws IOException {
         boolean idFound = false;
         List<String> products = Files.readAllLines(path);
         for (String productLine : products) {
             String[] split = productLine.split("\\|");
-            if (Objects.equals(split[0], String.valueOf(id))) {
+            if (Objects.equals(split[0], id)) {
                 idFound = true;
             }
         }
         if (!idFound) {
-            System.out.println("\nId not found.\n");
+            System.out.println("Id not found.");
+            System.out.println();
             groceryView.menuMain();
         }
     }
@@ -82,18 +83,18 @@ public class GroceryController {
             }
         }
         if (!nameFound) {
-            System.out.println("\nName not found.\n");
+            System.out.println("Name not found.\n");
             groceryView.menuMain();
         }
     }
 
-    public void verifyQuantity(int id, int quantity) throws IOException {
+    public void verifyQuantity(String id, int quantity) throws IOException {
         List<String> products = Files.readAllLines(path);
         for (String productLine : products) {
             String[] split = productLine.split("\\|");
             if (Objects.equals(split[0], String.valueOf(id))) {
                 if (quantity > Integer.parseInt(split[2])) {
-                    System.out.println("\nQuantity above stock.\n");
+                    System.out.println("Quantity above stock.\n");
                     groceryView.menuMain();
                 }
             }

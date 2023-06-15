@@ -12,25 +12,26 @@ import java.util.List;
 import java.util.Scanner;
 
 public class CustomerController {
-    private static final Product product = new Product();
-    private static final Cart cart = new Cart();
+    public static Cart cart = new Cart();
     private static final Scanner scanner = new Scanner(System.in);
     GroceryController groceryController = new GroceryController();
     GroceryView groceryView = new GroceryView();
     Path path = Paths.get("src/products.txt");
 
-    public void buyProduct(int id) throws IOException {
+    public void buyProduct(String id) throws IOException {
         String productLine = groceryController.searchProductById(id);
         groceryController.verifyAreYouSure(id, "buy");
         System.out.println("Enter the quantity: ");
         int quantity = scanner.nextInt();
+        scanner.nextLine();
         groceryController.verifyQuantity(id, quantity);
 
         String[] split = productLine.split("\\|");
         List<String> products = Files.readAllLines(path);
         for (int i = 0; i <products.size(); i++) {
             if (products.get(i).equals(productLine)) {
-                product.setId(Integer.valueOf(split[0]));
+                Product product = new Product();
+                product.setId(split[0]);
                 product.setName(split[1]);
                 product.setQuantity(quantity);
                 product.setPrice(Double.valueOf(split[3]));
@@ -39,52 +40,52 @@ public class CustomerController {
 
                 split[2] = String.valueOf(Integer.parseInt(split[2]) - quantity);
                 String productUpdated = String.join("|", split);
-                products.get(i).replaceAll(products.get(i),productUpdated);
+                products.remove(i);
+                products.add(i, productUpdated);
                 Files.write(path, products);
             }
         }
     }
 
-    public void removeProductShoppingCart() throws IOException {
-        System.out.println("Your shopping cart:");
-        List<Product> products = cart.getProductsCart();
-        for (Product product : products) {
-            String productLine = product.toString();
-            groceryView.showProduct(productLine);
-        }
-        System.out.println("Enter the Id of product you want to remove from Shopping Cart.");
-        int id = scanner.nextInt();
+    public void removeProductShoppingCart(String id) throws IOException {
         verifyProductCart(id);
         groceryController.verifyAreYouSure(id, "remove");
-
+        List<Product> products = cart.getProductsCart();
         for (int i = 0; i < products.size(); i++) {
             if (products.get(i).getId() == id) {
                 products.remove(i);
-                cart.setProductsCart(products);
+                Cart.setProductsCart(products);
             }
         }
     }
 
-    public void checkout() {
-        System.out.println("Your shopping cart:");
+    public void checkout() throws IOException {
+        System.out.println("Your shopping cart:\n");
+        List<Product> productsCart = cart.getProductsCart();
+        for (Product product : productsCart) {
+            String showProduct = product.toString().replaceAll("\n","");
+            groceryView.showProduct(showProduct);
+        }
         List<Product> products = cart.getProductsCart();
         double checkoutValue = 0d;
         for (Product product : products) {
-            String productLine = product.toString();
-            groceryView.showProduct(productLine);
             checkoutValue = checkoutValue + (product.getQuantity() * product.getPrice());
         }
-        System.out.printf("\nThe total checkout amount is: $%.2f\n", checkoutValue);
+        System.out.printf("The total checkout amount is: $%.2f", checkoutValue);
+        System.out.println();
+        System.out.println();
+
     }
 
-    public Object verifyProductCart(int id) throws IOException {
+    public Object verifyProductCart(String id) throws IOException {
         List<Product> productsCart = cart.getProductsCart();
         for (Product product : productsCart) {
             if (id == product.getId()) {
                 return null;
             }
         }
-        System.out.printf("\nProduct Id " + id + "not found in Shopping Cart.\n");
+        System.out.printf("Product Id " + id + " not found in Shopping Cart.");
+        System.out.println();
         groceryView.menuCustomer();
         return null;
     }

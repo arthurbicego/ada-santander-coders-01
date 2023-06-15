@@ -1,1 +1,2 @@
-0|Apple|4|0.4
+0|Monitor LED G-Sync, 2560x1440, 165Hz|3|177.5
+1|Product: Rainbow 104-Key Gaming Keyboard and Mouse|20|27.99
