@@ -1,4 +1,4 @@
-package entity;
+package tech.ada.entity;
 
 public class Product {
     private String id;
@@ -6,16 +6,16 @@ public class Product {
     private Integer quantity;
     private Double price;
 
+    public String getName() {
+        return name;
+    }
+
     public String getId() {
         return id;
     }
 
     public void setId(String id) {
         this.id = id;
-    }
-
-    public String getName() {
-        return name;
     }
 
     public void setName(String name) {
@@ -40,6 +40,6 @@ public class Product {
 
     @Override
     public String toString() {
-        return this.id + "|" + this.name + "|" + this.quantity +"|" + this.price + "\n";
+        return this.id + "|" + this.name + "|" + this.quantity + "|" + this.price + "\n";
     }
 }

@@ -1,14 +1,10 @@
-package view;
+package tech.ada.view;
 
-import controller.AdminController;
-import controller.CustomerController;
-import controller.GroceryController;
-import entity.Cart;
-import entity.Product;
+import tech.ada.controller.AdminController;
+import tech.ada.controller.CustomerController;
+import tech.ada.controller.GroceryController;
 
 import java.io.IOException;
-import java.util.List;
-import java.util.Objects;
 import java.util.Scanner;
 
 
@@ -17,9 +13,8 @@ public class GroceryView {
     private static final CustomerController customerController = new CustomerController();
     private static final AdminController adminController = new AdminController();
     private static final GroceryController groceryController = new GroceryController();
-    private static final Cart cart = new Cart();
 
-    public void menuMain() throws IOException {
+    public static void menuMain() throws IOException {
         boolean menuLoop = true;
 
         while (menuLoop) {
@@ -34,9 +29,10 @@ public class GroceryView {
                     menuCustomer();
                 }
                 case "2" -> {
-                    menuAdmin();;
+                    menuAdmin();
                 }
                 case "0" -> {
+                    System.out.println("Thank you for access our Grocery Store! See you.");
                     menuLoop = false;
                 }
                 default -> {
@@ -47,7 +43,7 @@ public class GroceryView {
         }
     }
 
-    public void menuCustomer() throws IOException {
+    public static void menuCustomer() throws IOException {
         boolean menuLoop = true;
 
         while (menuLoop) {
@@ -82,29 +78,19 @@ public class GroceryView {
                     String id = scanner.nextLine();
                     System.out.println();
                     customerController.buyProduct(id);
-                    customerController.checkout();
+                    customerController.showShoppingCart();
                 }
                 case "5" -> {
-                    customerController.checkout();
+                    customerController.showShoppingCart();
                     System.out.println("Enter the Id of product you want to remove from Shopping Cart: ");
                     String id = scanner.nextLine();
                     System.out.println();
                     customerController.removeProductShoppingCart(id);
-                    customerController.checkout();
                 }
                 case "6" -> {
-                    customerController.checkout();
-                    System.out.println("Do you want to complete your purchase?");
-                    System.out.println("1. Yes.");
-                    System.out.println("2. No! Go back to menu.");
-                    String option = scanner.nextLine();
-                    System.out.println();
-                    if (!Objects.equals(option, "1")) {
-                        menuMain();
+                    if (customerController.checkout()) {
+                        menuLoop = false;
                     }
-                    System.out.println("Thank you for shopping with us!");
-                    System.out.println();
-                    menuLoop = false;
                 }
                 case "0" -> {
                     menuLoop = false;
@@ -117,7 +103,7 @@ public class GroceryView {
         }
     }
 
-    public void menuAdmin() throws IOException {
+    public static void menuAdmin() throws IOException {
         boolean menuLoop = true;
 
         while (menuLoop) {
@@ -141,16 +127,19 @@ public class GroceryView {
                 case "3" -> {
                     System.out.println("Enter the Id you want to search.");
                     String id = scanner.nextLine();
+                    System.out.println();
                     groceryController.searchProductById(id);
                 }
                 case "4" -> {
                     System.out.println("Enter the Product Name you want to search.");
                     String name = scanner.nextLine();
+                    System.out.println();
                     groceryController.searchProductByName(name);
                 }
                 case "5" -> {
                     System.out.println("Enter the product id you want to update.");
                     String id = scanner.nextLine();
+                    System.out.println();
                     adminController.updateProduct(id);
                 }
                 case "6" -> {
@@ -158,8 +147,6 @@ public class GroceryView {
                     String id = scanner.nextLine();
                     System.out.println();
                     adminController.deleteProduct(id);
-                    System.out.println("Product with Id " + id + " has been deleted.");
-                    System.out.println();
                 }
                 case "0" -> {
                     menuLoop = false;
@@ -172,7 +159,7 @@ public class GroceryView {
         }
     }
 
-    public void showProduct(String product){
+    public static void showProduct(String product) {
         String[] split = product.split("\\|");
         System.out.println("Id: " + split[0]);
         System.out.println("Product: " + split[1]);
