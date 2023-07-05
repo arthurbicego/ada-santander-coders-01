@@ -8,7 +8,7 @@ purchases. Product data is saved in a .txt file.
 - [Statement](#statement)
 - [Concepts](#concepts)
 
-[See the project in Development Envir[README.md](README.md)onment](https://github.dev/arthurbicego/ada01)
+[See the project in Development Environment](https://github.dev/arthurbicego/ada01)
 
 ---
 
