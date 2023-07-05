@@ -94,7 +94,7 @@ public class GroceryController {
         List<String> products = Files.readAllLines(path);
         for (String productLine : products) {
             String[] split = productLine.split("\\|");
-            if (Objects.equals(split[0], String.valueOf(id))) {
+            if (Objects.equals(split[0], id)) {
                 if (quantity > Integer.parseInt(split[2])) {
                     System.out.println();
                     System.out.println("Quantity above stock.\n");

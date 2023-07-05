@@ -8,7 +8,7 @@ purchases. Product data is saved in a .txt file.
 - [Statement](#statement)
 - [Concepts](#concepts)
 
-[See the project in Development Environment](https://github.dev/arthurbicego/ada01)
+[See the project in Development Envir[README.md](README.md)onment](https://github.dev/arthurbicego/ada01)
 
 ---
 
@@ -31,6 +31,129 @@ Note: You will only need to save the product data in a file.
   Once the user confirms the purchase, deduct the quantities of the selected products.
 - An exit option that closes the program if the user chooses to.
 
-### Concepts
+---
 
-TBD
+### Some Concepts
+
+<details>
+  <summary>Casting</summary>
+
+  ```java
+split[2] = String.valueOf(Integer.parseInt(split[2]) - quantity);
+  ```
+</details>
+<details>
+  <summary>Input</summary>
+
+  ```java
+String id = scanner.nextLine();
+  ```
+</details>
+<details>
+  <summary>Output</summary>
+
+  ```java
+System.out.println("Are you sure you want to " + method + " Product " + id + "?");
+  ```
+
+  ```java
+System.out.printf("The total checkout amount is: $%.2f", checkoutValue);
+System.out.println();
+  ```
+</details>
+
+<details>
+  <summary>Array and String</summary>
+
+  ```java
+String[] split = productLine.split("\\|");
+  ```
+
+  ```java
+split[1].toUpperCase().contains(name.toUpperCase())
+  ```
+
+  ```java
+Objects.equals(split[0], id)
+  ```
+</details>
+<details>
+  <summary>Logical Operator</summary>
+
+  ```java
+productLine != null
+  ```
+</details>
+<details>
+  <summary>Selection Statement</summary>
+
+  ```java
+if (size == 0) {
+    product.setId("0");
+} else {
+    List<String> products = Files.readAllLines(path);
+    size--;
+    String[] split = products.get(size).split("\\|");
+    Integer valueOf = Integer.valueOf(split[0]);
+    valueOf++;
+    product.setId(String.valueOf(valueOf));
+}
+  ```
+</details>
+<details>
+  <summary>Enhanced Switch</summary>
+
+  ```java
+switch (choice) {
+    case "1" -> {
+        groceryController.listProducts();
+    }
+  ```
+</details>
+<details>
+  <summary>For, Enhanced For, ForEach</summary>
+
+  ```java
+for (int i = 0; i < cartProducts.size(); i++) {
+    if (Objects.equals(cartProducts.get(i).getId(), id)) {
+        cartProducts.remove(i);
+        cart.setProductsCart(cartProducts);
+    }
+}
+  ```
+  ```java
+for (Product product : products) {
+    checkoutValue = checkoutValue + (product.getQuantity() * product.getPrice());
+}
+  ```
+  ```java
+products.forEach(product -> GroceryView.showProduct(product))
+  ```
+</details>
+<details>
+  <summary>Exceptions</summary>
+
+  ```java
+try {
+    quantity = scanner.nextInt();
+    scanner.nextLine();
+} catch (Exception e) {
+    System.out.println();
+    System.out.println("Error registering the quantity. Default quantity (1) has been set.");
+    quantity = 1;
+}
+  ```
+</details>
+<details>
+  <summary>File Handling</summary>
+
+  ```java
+Path path = Paths.get("src/tech/ada/products.txt")
+  ```
+  ```java
+Files.readAllLines(path);
+  ```
+  ```java
+Files.write(path, products);
+  ```
+</details>
