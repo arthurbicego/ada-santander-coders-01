@@ -1,6 +1,6 @@
 # Ada - Santander Coders: Unit 01
 
-### Grocery Store Project - CRUD
+### Grocery Store Project
 
 This project creates a grocery store program that allows users to create, edit, delete, search for products, and make
 purchases. Product data is saved in a .txt file.
