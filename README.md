@@ -2,7 +2,7 @@
 
 ### Grocery Store Project
 
-This project creates a grocery store program that allows users to create, edit, delete, search for products, and make
+This project is a grocery store software that allows users to create, edit, delete, search for products, and do
 purchases. Product data is saved in a .txt file.
 
 - [Statement](#statement)
