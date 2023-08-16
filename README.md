@@ -8,7 +8,7 @@ purchases. Product data is saved in a .txt file.
 - [Statement](#statement)
 - [Concepts](#concepts)
 
-[See the project in Development Environment](https://github.dev/arthurbicego/ada01)
+[See the project in Development Environment](https://github.dev/arthurbicego/ada-santander-coders-01)
 
 ---
 
