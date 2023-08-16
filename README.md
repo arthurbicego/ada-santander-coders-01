@@ -33,7 +33,7 @@ Note: You will only need to save the product data in a file.
 
 ---
 
-### Some Concepts
+### Concepts
 
 <details>
   <summary>Casting</summary>
