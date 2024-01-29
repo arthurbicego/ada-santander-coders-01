@@ -1,2 +1,2 @@
-0|Monitor LED G-Sync, 2560x1440, 165Hz|90|177.5
-1|Rainbow 104-Key Gaming Keyboard and Mouse|136|19.99
+0|Monitor LED G-Sync, 2560x1440, 165Hz|88|177.5
+1|Rainbow 104-Key Gaming Keyboard and Mouse|130|19.99
