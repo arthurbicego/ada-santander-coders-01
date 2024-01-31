@@ -157,3 +157,17 @@ Files.readAllLines(path);
 Files.write(path, products);
   ```
 </details>
+<details>
+  <summary>Recursion</summary>
+
+  ```java
+    public void displayProducts (List<Product> productsCart, int index) {
+        if (index < productsCart.size()) {
+            Product product = productsCart.get(index);
+            String showProduct = product.toString().replaceAll("\n", "");
+            GroceryView.showProduct(showProduct);
+            displayProducts(productsCart, index + 1);
+        }
+    }
+  ```
+</details>
