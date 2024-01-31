@@ -35,7 +35,6 @@ public class CustomerController {
 
                 if (groceryController.verifyQuantity(id, quantity)) {
 
-
                     String[] split = productLine.split("\\|");
                     List<String> products = Files.readAllLines(path);
 
@@ -136,13 +135,13 @@ public class CustomerController {
     public void showShoppingCart() {
         System.out.println("Your shopping cart:\n");
         List<Product> productsCart = cart.getProductsCart();
-        for (Product product : productsCart) {
-            String showProduct = product.toString().replaceAll("\n", "");
-            GroceryView.showProduct(showProduct);
-        }
-        List<Product> products = cart.getProductsCart();
+        displayProducts(productsCart,0);
+//        for (Product product : productsCart) {
+//            String showProduct = product.toString().replaceAll("\n", "");
+//            GroceryView.showProduct(showProduct);
+//        }
         double checkoutValue = 0d;
-        for (Product product : products) {
+        for (Product product : productsCart) {
             checkoutValue = checkoutValue + (product.getQuantity() * product.getPrice());
         }
         System.out.printf("The total checkout amount is: $%.2f", checkoutValue);
@@ -161,6 +160,15 @@ public class CustomerController {
         System.out.println();
         System.out.println();
         return false;
+    }
+
+    public void displayProducts (List<Product> productsCart, int index) {
+        if (index < productsCart.size()) {
+            Product product = productsCart.get(index);
+            String showProduct = product.toString().replaceAll("\n", "");
+            GroceryView.showProduct(showProduct);
+            displayProducts(productsCart, index + 1);
+        }
     }
 
 }

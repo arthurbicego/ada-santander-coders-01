@@ -1,45 +1,46 @@
 package tech.ada.entity;
 
-public class Product {
-    private String id;
-    private String name;
-    private Integer quantity;
-    private Double price;
+import java.util.HashMap;
+import java.util.Map;
 
-    public String getName() {
-        return name;
-    }
+public class Product {
+    private Map<String, Object> product = new HashMap<>();
 
     public String getId() {
-        return id;
+        return (String) product.get("id");
     }
 
     public void setId(String id) {
-        this.id = id;
+        product.put("id", id);
+    }
+
+    public String getName() {
+        return (String) product.get("name");
     }
 
     public void setName(String name) {
-        this.name = name;
+        product.put("name", name);
     }
 
     public Integer getQuantity() {
-        return quantity;
+        return (Integer) product.get("quantity");
     }
 
     public void setQuantity(Integer quantity) {
-        this.quantity = quantity;
+        product.put("quantity", quantity);
     }
 
     public Double getPrice() {
-        return price;
+        return (Double) product.get("price");
     }
 
     public void setPrice(Double price) {
-        this.price = price;
+        product.put("price", price);
     }
 
     @Override
     public String toString() {
-        return this.id + "|" + this.name + "|" + this.quantity + "|" + this.price + "\n";
+        return product.get("id") + "|" + product.get("name") + "|" +
+                product.get("quantity") + "|" + product.get("price") + "\n";
     }
 }

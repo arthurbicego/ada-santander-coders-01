@@ -89,15 +89,15 @@ productLine != null
 
   ```java
 if (size == 0) {
-    product.setId("0");
+        product.setId("0");
 } else {
-    List<String> products = Files.readAllLines(path);
-    size--;
-    String[] split = products.get(size).split("\\|");
-    Integer valueOf = Integer.valueOf(split[0]);
-    valueOf++;
-    product.setId(String.valueOf(valueOf));
-}
+List<String> products = Files.readAllLines(path);
+size--;
+String[] split = products.get(size).split("\\|");
+Integer valueOf = Integer.valueOf(split[0]);
+valueOf++;
+        product.setId(String.valueOf(valueOf));
+        }
   ```
 </details>
 <details>
@@ -105,7 +105,7 @@ if (size == 0) {
 
   ```java
 switch (choice) {
-    case "1" -> {
+        case "1" -> {
         groceryController.listProducts();
     }
   ```
@@ -115,16 +115,16 @@ switch (choice) {
 
   ```java
 for (int i = 0; i < cartProducts.size(); i++) {
-    if (Objects.equals(cartProducts.get(i).getId(), id)) {
+        if (Objects.equals(cartProducts.get(i).getId(), id)) {
         cartProducts.remove(i);
         cart.setProductsCart(cartProducts);
     }
-}
+            }
   ```
   ```java
 for (Product product : products) {
-    checkoutValue = checkoutValue + (product.getQuantity() * product.getPrice());
-}
+checkoutValue = checkoutValue + (product.getQuantity() * product.getPrice());
+        }
   ```
   ```java
 products.forEach(product -> GroceryView.showProduct(product))
@@ -135,13 +135,13 @@ products.forEach(product -> GroceryView.showProduct(product))
 
   ```java
 try {
-    quantity = scanner.nextInt();
+quantity = scanner.nextInt();
     scanner.nextLine();
 } catch (Exception e) {
-    System.out.println();
+        System.out.println();
     System.out.println("Error registering the quantity. Default quantity (1) has been set.");
-    quantity = 1;
-}
+quantity = 1;
+        }
   ```
 </details>
 <details>
@@ -161,13 +161,54 @@ Files.write(path, products);
   <summary>Recursion</summary>
 
   ```java
-    public void displayProducts (List<Product> productsCart, int index) {
-        if (index < productsCart.size()) {
-            Product product = productsCart.get(index);
-            String showProduct = product.toString().replaceAll("\n", "");
-            GroceryView.showProduct(showProduct);
-            displayProducts(productsCart, index + 1);
-        }
+public void displayProducts (List<Product> productsCart, int index) {
+    if (index < productsCart.size()) {
+        Product product = productsCart.get(index);
+        String showProduct = product.toString().replaceAll("\n", "");
+        GroceryView.showProduct(showProduct);
+        displayProducts(productsCart, index + 1);
     }
+}
+  ```
+</details>
+<details>
+  <summary>Array List</summary>
+
+  ```java
+  List<Product> productsCart = cart.getProductsCart();
+  ```
+  ```java
+public class Cart {
+  private List<Product> productsCart = new ArrayList<>();
+
+  public void addProduct(Product product) {
+    productsCart.add(product);
+  }
+
+  public List<Product> getProductsCart() {
+    return this.productsCart;
+  }
+
+  public void setProductsCart(List<Product> products) {
+    this.productsCart = products;
+  }
+}
+  ```
+</details>
+<details>
+  <summary>toString</summary>
+
+  ```java
+@Override
+public String toString() {
+  return product.get("id") + "|" + product.get("name") + "|" + product.get("quantity") + "|" + product.get("price") + "\n";
+}
+  ```
+</details>
+<details>
+  <summary>HashMap</summary>
+
+  ```java
+private Map<String, Object> product = new HashMap<>();
   ```
 </details>
